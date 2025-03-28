@@ -4,7 +4,7 @@
 
 - Rechtsklick auf jeweiligen Task-Ordner
 ![](image.png)
-Auf `Open in Integrated Terminal` klicken.
+Auf `Open in Integrated Terminal` klicken.  
 
 - Dabei öffnet sich eine Konsole, die sich direkt im richtigen Verzeichnis befindet.
 - `make clean`: löscht alte Binary-File.
