@@ -2,9 +2,9 @@
 
 ## Ausführen vom Code in Visual Studio Code
 
-- Rechtsklick auf jeweiligen Task-Ordner
+- Rechtsklick auf jeweiligen Task-Ordner<br>
 ![](image.png)
-Auf `Open in Integrated Terminal` klicken.  
+Auf `Open in Integrated Terminal` klicken.<br>
 
 - Dabei öffnet sich eine Konsole, die sich direkt im richtigen Verzeichnis befindet.
 - `make clean`: löscht alte Binary-File.
