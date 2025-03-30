@@ -2,23 +2,60 @@
 #include <stdlib.h>
 #include <string.h>
 
-
+// helper-function for wrong inputs
 void usage(int length) {
     fprintf(stderr, "You typed in %d symbols.\nType in at least five symbols!\n", length);
     exit(EXIT_FAILURE);
 }
-void using_getc(char buffer[], int n, int length, int min_length){}
-void using_scanf(char buffer[], int n, int length, int min_length){}
-void using_fread(char buffer[], int n, int length, int min_length){}
+
+void using_getc(char buffer[], int n, int length, int min_length){
+    while(1) {
+        char tmp;
+        int ix = 0;
+
+        printf("Type in a sequence of symbols: ");
+        // reading symbols and writing them to buffer-array
+        while((tmp = getc(stdin)) != '\n' && tmp != EOF) {
+            buffer[ix++] = (char) tmp;
+        }
+
+        // nullterminator for indicating end of string-sequence
+        buffer[ix] = '\0';
+
+        // check length
+        length = strlen(buffer);
+        if(length < min_length) {
+            usage(length);
+        }
+
+        // writing to stdout
+        printf("Your input was: ");
+        ix = 0;
+        while (buffer[ix] != '\0') {
+            putc(buffer[ix++], stdout);
+        }
+        printf("\n");
+    }
+}
+
+
+void using_scanf(char buffer[], int n, int length, int min_length){
+
+}
+
+void using_fread(char buffer[], int n, int length, int min_length){
+
+}
+
 void using_fgets(char buffer[], int n, int length, int min_length){
     while(1) {
         printf("Type in a sequence of symbols: ");
         fgets(buffer, n, stdin);
         length = strlen(buffer) - 1;
-        if (length < min_length){
+        if (length < min_length) {
             usage(length);
         }
-        fprintf(stdout, "your input was: ");
+        fprintf(stdout, "Your input was: ");
         puts(buffer);
         }
 }
@@ -69,9 +106,6 @@ int main(void) {
         exit(EXIT_FAILURE);
     }
     
-    using_fgets(buffer, n, length, min_length);
-
-
     return 0;
 }
 
