@@ -24,7 +24,7 @@
 - In den jeweiligen Task-Ordner befinden sich die Aufgaben mit dem zugehörigen Code.
 ## Ausführen vom Code in Visual Studio Code
 
-- Rechtsklick auf jeweiligen Task-Ordner & auf `Open in Integrated Terminal` klicken. <br><br> <br>
+- Rechtsklick auf jeweiligen Task-Ordner & auf `Open in Integrated Terminal` klicken. <br>
 <p align="left">
     <img src="images/doc/readme1.png" width="300"/>
 </p> 
