@@ -2,10 +2,10 @@ CC = gcc
 CFLAGS = -Wall -Wextra -std=c11
 
 # Output binary name
-TARGET = thomas
+TARGET = main
 
 # Source files
-SRC = thomas.c
+SRC = main.c
 
 # Build target
 all: $(TARGET)
