@@ -1,35 +1,77 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 
-void usage() {
-    fprintf(stderr, "type in five symbols max.!\n");
+void usage(int length) {
+    fprintf(stderr, "You typed in %d symbols.\nType in at least five symbols!\n", length);
     exit(EXIT_FAILURE);
+}
+void using_getc(char buffer[], int n, int length, int min_length){}
+void using_scanf(char buffer[], int n, int length, int min_length){}
+void using_fread(char buffer[], int n, int length, int min_length){}
+void using_fgets(char buffer[], int n, int length, int min_length){
+    while(1) {
+        printf("Type in a sequence of symbols: ");
+        fgets(buffer, n, stdin);
+        length = strlen(buffer) - 1;
+        if (length < min_length){
+            usage(length);
+        }
+        fprintf(stdout, "your input was: ");
+        puts(buffer);
+        }
 }
 
 
 int main(void) {
     
-    char buffer[5]; 
-    char tmp = -1;
+    char buffer[32]; 
     int n = sizeof(buffer) / sizeof(buffer[0]);
-    int free = sizeof(buffer) / sizeof(buffer[0]);
+    int length;
+    int min_length = 5;
 
-    printf("tipp was rein lmao: ");
-    while (tmp = getc(stdin) != EOF || free == 0) {
-        if (free == 0) {
-            usage();    // fehler
-        }
-        buffer[n - free] = tmp;
-        free--;
+    printf("Choose which I/O functions you want to test:\n"
+        "1: getc() & putc()\n"
+        "2: fgets() & puts()\n"
+        "3: scanf() & printf()\n"
+        "4: fread() & fwrite()\n"
+        "Enter number: ");
+
+    int num;
+    if (scanf("%d", &num) != 1) {
+        fprintf(stderr, "Invalid input!\n");
+        exit(EXIT_FAILURE);
     }
 
-    while (free != n){
-        printf("%c ", buffer[free]);
-        free++;
-    }
+    // empty buffer
+    int ch;
+    while ((ch = getchar()) != '\n' && ch != EOF);
 
-    exit(EXIT_SUCCESS);
+    // switch statement for determining which functions to be used
+    switch (num)
+    {
+    case 1:
+        using_getc(buffer, n, length, min_length);
+        break;
+    case 2:
+        using_fgets(buffer, n, length, min_length);
+        break;
+    case 3:
+        using_scanf(buffer, n, length, min_length);
+        break;
+    case 4:
+        using_fread(buffer, n, length, min_length);
+        break;
+    
+    default:
+        fprintf(stderr, "You choosed number %d which isn't within the scope!\n", num);
+        exit(EXIT_FAILURE);
+    }
+    
+    using_fgets(buffer, n, length, min_length);
+
 
     return 0;
 }
+
