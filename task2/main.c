@@ -38,15 +38,6 @@ void using_getc(char buffer[], int n, int length, int min_length){
     }
 }
 
-
-void using_scanf(char buffer[], int n, int length, int min_length){
-
-}
-
-void using_fread(char buffer[], int n, int length, int min_length){
-
-}
-
 void using_fgets(char buffer[], int n, int length, int min_length){
     while(1) {
         printf("Type in a sequence of symbols: ");
@@ -60,6 +51,26 @@ void using_fgets(char buffer[], int n, int length, int min_length){
         }
 }
 
+void using_scanf(char buffer[], int n, int length, int min_length){
+    while(1) {
+
+
+
+
+
+
+
+
+
+
+    }
+}
+
+void using_fread(char buffer[], int n, int length, int min_length){
+
+}
+
+
 
 int main(void) {
     
@@ -68,7 +79,7 @@ int main(void) {
     int length;
     int min_length = 5;
 
-    printf("Choose which I/O functions you want to test:\n"
+    printf("Choose which I/O functions you want to use:\n"
         "1: getc() & putc()\n"
         "2: fgets() & puts()\n"
         "3: scanf() & printf()\n"
