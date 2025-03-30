@@ -3,7 +3,7 @@
 ## Ausführen vom Code in Visual Studio Code
 
 - Rechtsklick auf jeweiligen Task-Ordner<br> <br>
-![](image.png)<br>
+![](images/image.png)<br>
 Auf `Open in Integrated Terminal` klicken. <br>
 
 - Dabei öffnet sich eine Konsole, die sich direkt im richtigen Verzeichnis befindet.
