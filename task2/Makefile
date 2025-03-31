@@ -2,7 +2,7 @@ CC = gcc
 CFLAGS = -Wall -Wextra -std=c11
 
 # Output binary name
-TARGET = main
+TARGET = main.exe
 
 # Source files
 SRC = main.c

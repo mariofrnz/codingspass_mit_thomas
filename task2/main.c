@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 
+#define BUFFER_SIZE 32
+
 // helper-function for wrong inputs
 void usage(int length) {
     fprintf(stderr, "You typed in %d symbols.\nType in at least five symbols!\n", length);
@@ -34,7 +36,7 @@ void using_getc(char buffer[], int n, int length, int min_length){
         while (buffer[ix] != '\0') {
             putc(buffer[ix++], stdout);
         }
-        printf("\n");
+        printf("\n\n");
     }
 }
 
@@ -46,37 +48,55 @@ void using_fgets(char buffer[], int n, int length, int min_length){
         if (length < min_length) {
             usage(length);
         }
-        fprintf(stdout, "Your input was: ");
+        printf("Your input was: ");
         puts(buffer);
         }
 }
 
 void using_scanf(char buffer[], int n, int length, int min_length){
     while(1) {
-
-
-
-
-
-
-
-
-
-
+        printf("Type in a sequence of symbols: ");
+        scanf("%s", buffer);
+        length = strlen(buffer);
+        if (length < min_length) {
+            usage(length);
+        }
+        printf("Your input was: %s\n\n", buffer);
     }
 }
 
-void using_fread(char buffer[], int n, int length, int min_length){
-
+void using_fread(char buffer[], int n, int length, int min_length) {
+    char line[BUFFER_SIZE];
+    char c;
+    while (1) {
+        int bytes_read;
+        while((fread(&c, 1, 1, stdin)) == 1) {
+            if(c == '\n') {
+                if(length >= 5) {
+                    char output[] = "Your input was: ";
+                    fwrite(output, 1, strlen(output), stdout);
+                    fwrite(line, 1, length, stdout);
+                    fwrite("\n\n", 1, 1, stdout);
+                } else {
+                    usage(length);
+                }
+                length = 0;
+            } else {
+                if(length < BUFFER_SIZE - 1) {
+                    line[length++] = c;
+                }
+            }
+        
+        }
+    }
 }
-
 
 
 int main(void) {
     
-    char buffer[32]; 
+    char buffer[BUFFER_SIZE]; 
     int n = sizeof(buffer) / sizeof(buffer[0]);
-    int length;
+    int length = 0;
     int min_length = 5;
 
     printf("Choose which I/O functions you want to use:\n"
