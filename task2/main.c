@@ -2,7 +2,20 @@
 #include <stdlib.h>
 #include <string.h>
 
+// TASK 1
+
+// macro for defining buffer size
 #define BUFFER_SIZE 32
+
+
+void task_selector();
+void usage();
+void task1();
+void task2();
+
+
+
+
 
 // helper-function for wrong inputs
 void usage(int length) {
@@ -91,19 +104,50 @@ void using_fread(char buffer[], int n, int length, int min_length) {
     }
 }
 
+void task_selector() {
+    printf("Choose: \n"
+        "[1] task1\n"
+        "[2] task2\n"
+        "[0] kill\n"
+        "Enter number: ");
 
-int main(void) {
+    int num;
+    if(scanf("%d", &num) != 1) {
+        fprintf(stderr, "Invalid input!\n");
+        exit(EXIT_FAILURE);
+    } 
+
+    switch (num)
+    {
+    case 0: 
+        exit(0);
+    case 1:
+        system("clear");
+        task1();
+        break;
+    case 2:
+        //task2();
+        break;
+    default:
+        fprintf(stderr, "You choosed number %d which isn't within the scope!\n", num);
+        exit(EXIT_FAILURE);
+    }
     
+}
+
+
+void task1() {
     char buffer[BUFFER_SIZE]; 
     int n = sizeof(buffer) / sizeof(buffer[0]);
     int length = 0;
     int min_length = 5;
 
     printf("Choose which I/O functions you want to use:\n"
-        "1: getc() & putc()\n"
-        "2: fgets() & puts()\n"
-        "3: scanf() & printf()\n"
-        "4: fread() & fwrite()\n"
+        "[1] getc() & putc()\n"
+        "[2] fgets() & puts()\n"
+        "[3] scanf() & printf()\n"
+        "[4] fread() & fwrite()\n"
+        "[0] go back to task selection\n"
         "Enter number: ");
 
     int num;
@@ -131,11 +175,22 @@ int main(void) {
     case 4:
         using_fread(buffer, n, length, min_length);
         break;
+    case 0:
+        system("clear");
+        task_selector();
     
     default:
         fprintf(stderr, "You choosed number %d which isn't within the scope!\n", num);
         exit(EXIT_FAILURE);
     }
+}
+
+
+
+
+int main(void) {
+    
+    task_selector();
     
     return 0;
 }
