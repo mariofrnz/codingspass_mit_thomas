@@ -29,12 +29,13 @@ void using_getc(char buffer[], int n, int length, int min_length){
         int ix = 0;
 
         printf("Type in a sequence of symbols: ");
+
         // reading symbols and writing them to buffer-array
         while((tmp = getc(stdin)) != '\n' && tmp != EOF) {
             buffer[ix++] = (char) tmp;
         }
 
-        // nullterminator for indicating end of string-sequence
+        // manually adding nullterminator for indicating end of string-sequence
         buffer[ix] = '\0';
 
         // check length
@@ -56,11 +57,18 @@ void using_getc(char buffer[], int n, int length, int min_length){
 void using_fgets(char buffer[], int n, int length, int min_length){
     while(1) {
         printf("Type in a sequence of symbols: ");
+
+        // since fgets does already appends '\0' at the end of a sequence, we do not have
+        // to manually append it at the end
         fgets(buffer, n, stdin);
+
+        // check length
         length = strlen(buffer) - 1;
         if (length < min_length) {
             usage(length);
         }
+
+        // output - puts() already adds a new line (\n), so we dont have to worry about it
         printf("Your input was: ");
         puts(buffer);
         }
@@ -120,6 +128,7 @@ void task_selector() {
     switch (num)
     {
     case 0: 
+        system("clear");
         exit(0);
     case 1:
         system("clear");
