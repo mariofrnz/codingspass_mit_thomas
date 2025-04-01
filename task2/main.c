@@ -2,20 +2,22 @@
 #include <stdlib.h>
 #include <string.h>
 
-// TASK 1
+
 
 // macro for defining buffer size
 #define BUFFER_SIZE 32
 
-
+// function declarations
 void task_selector();
 void usage();
 void task1();
 void task2();
+void using_getc();
+void using_fgets();
+void using_scanf();
+void using_fread();
 
-
-
-
+// TASK 1
 
 // helper-function for wrong inputs
 void usage(int length) {
@@ -112,38 +114,6 @@ void using_fread(char buffer[], int n, int length, int min_length) {
     }
 }
 
-void task_selector() {
-    printf("Choose: \n"
-        "[1] task1\n"
-        "[2] task2\n"
-        "[0] kill\n"
-        "Enter number: ");
-
-    int num;
-    if(scanf("%d", &num) != 1) {
-        fprintf(stderr, "Invalid input!\n");
-        exit(EXIT_FAILURE);
-    } 
-
-    switch (num)
-    {
-    case 0: 
-        system("clear");
-        exit(0);
-    case 1:
-        system("clear");
-        task1();
-        break;
-    case 2:
-        //task2();
-        break;
-    default:
-        fprintf(stderr, "You choosed number %d which isn't within the scope!\n", num);
-        exit(EXIT_FAILURE);
-    }
-    
-}
-
 
 void task1() {
     char buffer[BUFFER_SIZE]; 
@@ -151,12 +121,13 @@ void task1() {
     int length = 0;
     int min_length = 5;
 
-    printf("Choose which I/O functions you want to use:\n"
+    printf("************ task 1 ************\n"
+        "Choose which I/O functions you want to use:\n"
         "[1] getc() & putc()\n"
         "[2] fgets() & puts()\n"
         "[3] scanf() & printf()\n"
         "[4] fread() & fwrite()\n"
-        "[0] go back to task selection\n"
+        "[0] back to task selection\n"
         "Enter number: ");
 
     int num;
@@ -170,32 +141,88 @@ void task1() {
     while ((ch = getchar()) != '\n' && ch != EOF);
 
     // switch statement for determining which functions to be used
-    switch (num)
-    {
-    case 1:
-        using_getc(buffer, n, length, min_length);
-        break;
-    case 2:
-        using_fgets(buffer, n, length, min_length);
-        break;
-    case 3:
-        using_scanf(buffer, n, length, min_length);
-        break;
-    case 4:
-        using_fread(buffer, n, length, min_length);
-        break;
-    case 0:
-        system("clear");
-        task_selector();
-    
-    default:
-        fprintf(stderr, "You choosed number %d which isn't within the scope!\n", num);
-        exit(EXIT_FAILURE);
+    switch (num) {
+        case 1:
+            using_getc(buffer, n, length, min_length);
+            break;
+        case 2:
+            using_fgets(buffer, n, length, min_length);
+            break;
+        case 3:
+            using_scanf(buffer, n, length, min_length);
+            break;
+        case 4:
+            using_fread(buffer, n, length, min_length);
+            break;
+        case 0:
+            system("clear");
+            task_selector();
+        
+        default:
+            fprintf(stderr, "You choosed number %d which isn't within the scope!\n", num);
+            exit(EXIT_FAILURE);
     }
 }
 
+void task2() {
+    int num;
 
+    printf("************ task 2 ************\n"
+        "[1]: begin task2\n"
+        "[0]: back to task-selection\n"
+        "Enter number: ");
+    
+    if(scanf("%d", &num) != 1) {
+        fprintf(stderr, "Invalid input!\n");
+        exit(EXIT_FAILURE);
+    }
 
+    switch (num) {
+        case 1:
+            printf("u fell into case1\n");
+            break;
+        case 0:
+            system("clear");
+            task_selector();
+            break;
+        default:
+            fprintf(stderr, "You choosed number %d which isn't within the scope!\n", num);
+            exit(EXIT_FAILURE);
+    }
+
+}
+
+void task_selector() {
+    printf("**** task-selection **** \n"
+        "[1] task1\n"
+        "[2] task2\n"
+        "[0] kill\n"
+        "Enter number: ");
+
+    int num;
+    if(scanf("%d", &num) != 1) {
+        fprintf(stderr, "Invalid input!\n");
+        exit(EXIT_FAILURE);
+    } 
+
+    switch (num) {
+        case 0: 
+            system("clear");
+            exit(0);
+        case 1:
+            system("clear");
+            task1();
+            break;
+        case 2:
+            system("clear");
+            task2();
+            break;
+        default:
+            fprintf(stderr, "You choosed number %d which isn't within the scope!\n", num);
+            exit(EXIT_FAILURE);
+    }
+    
+}
 
 int main(void) {
     
