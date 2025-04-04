@@ -35,7 +35,7 @@
 - `make`: Kompilieren des Codes mittels `gcc`. Dabei die Erros und Warnings in der Konsole ordentlich gönnen :))
 - `./[Programmname]` führt Code aus. Output in Konsole. Programmname: Name der Binary-File (also meistens `main`).
 
-
+<br><br>
 
 
 ## Einbinden und Clonen vom Projekt in CLion
