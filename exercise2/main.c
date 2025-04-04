@@ -20,12 +20,12 @@ void using_fread();
 // TASK 1
 
 // helper-function for wrong inputs
-void usage(int length) {
+void usage(size_t length) {
     fprintf(stderr, "You typed in %d symbols.\nType in at least five symbols!\n", length);
     exit(EXIT_FAILURE);
 }
 
-void using_getc(char buffer[], int n, int length, int min_length){
+void using_getc(char buffer[], int n, size_t length, int min_length){
     while(1) {
         char tmp;
         int ix = 0;
@@ -56,7 +56,7 @@ void using_getc(char buffer[], int n, int length, int min_length){
     }
 }
 
-void using_fgets(char buffer[], int n, int length, int min_length){
+void using_fgets(char buffer[], int n, size_t length, int min_length){
     while(1) {
         printf("Type in a sequence of symbols: ");
 
@@ -76,7 +76,7 @@ void using_fgets(char buffer[], int n, int length, int min_length){
         }
 }
 
-void using_scanf(char buffer[], int n, int length, int min_length){
+void using_scanf(char buffer[], int n, size_t length, int min_length){
     while(1) {
         printf("Type in a sequence of symbols: ");
         scanf("%s", buffer);
@@ -88,7 +88,7 @@ void using_scanf(char buffer[], int n, int length, int min_length){
     }
 }
 
-void using_fread(char buffer[], int n, int length, int min_length) {
+void using_fread(char buffer[], int n, size_t length, int min_length) {
     char line[BUFFER_SIZE];
     char c;
     while (1) {
@@ -116,9 +116,9 @@ void using_fread(char buffer[], int n, int length, int min_length) {
 
 
 void task1() {
-    char buffer[BUFFER_SIZE]; 
-    int n = sizeof(buffer) / sizeof(buffer[0]);
-    int length = 0;
+    char buffer[BUFFER_SIZE];
+    const int n = sizeof(buffer) / sizeof(buffer[0]);
+    size_t length = 0;
     int min_length = 5;
 
     printf("************ task 1 ************\n"
