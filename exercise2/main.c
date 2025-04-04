@@ -12,6 +12,7 @@ void task_selector();
 void usage();
 void task1();
 void task2();
+void task2_logic();
 void using_getc();
 void using_fgets();
 void using_scanf();
@@ -179,7 +180,7 @@ void task2() {
 
     switch (num) {
         case 1:
-            printf("u fell into case1\n");
+            task2_logic();
             break;
         case 0:
             system("clear");
@@ -190,6 +191,45 @@ void task2() {
             exit(EXIT_FAILURE);
     }
 
+}
+
+void task2_logic() {
+    int n = 0;
+    int year, mileage, height;
+    float weight;
+    char brand[16], model[16], name[12];
+    char license_type;
+
+    system("clear");
+    printf("Type in the data of your car.\n"
+        "The order must be: brand, model, year of construction, mileage in km - seperated by a blank\n"
+        "example: Volkswagen Golf 2015 124000\n"
+        "Your input: ");
+        
+    n = scanf("%16s %16s %d %d", &brand[0], &model[0], &year, &mileage);
+
+    if(n != 4) {
+        printf("your input was wrong. Try it again!\n");
+        exit(EXIT_FAILURE);
+    }
+
+    printf("Now type in your first name, the type of driving license you have (A or B), your height in cm and your weigth in kg\n"
+        "example: Rainer B 190 230.5\n"
+        "Your input: ");
+
+    
+    
+    n = scanf("%11s %c %d %f", &name[0], &license_type, &height, &weight);
+
+    if (n != 4) {
+        printf("Your input was invalid. Try it again!\n");
+        exit(EXIT_FAILURE);
+    }
+    float bmi = (weight / (height / 10.0));
+    bmi *= bmi;
+    system("clear");
+    printf("You are %s, you own a driving license of type: %c, your BMI is: %f and you are driving the following car:\n"
+        "Brand: %s, Model: %s, Year of construction: %d, Mileage: %d\n", name, license_type, bmi, brand, model, year, mileage);
 }
 
 void task_selector() {
